@@ -1,0 +1,68 @@
+.Searchbar {
+    /* margin-left: 350px; */
+    width: 80%;
+}
+
+.Searchbar i {
+    padding: 30px 8px 30px 10px;
+}
+
+.Searchbar input {
+    border-radius: 5px;
+    padding: 10px 80px;
+    display: inline;
+}
+
+.Searchbar button {
+    background-color: green;
+    border-radius: 5px;
+    padding: 3px 7px;
+    font-weight: bold;
+    font-size: medium;
+    color: white;
+    margin-left: 150px;
+}
+
+@media (min-width: 700px) and (max-width: 899px) {
+    .Searchbar {
+        width: 700px;
+        margin-left: 100px;
+    }
+
+    .Searchbar input {
+        padding: 10px 170px;
+    }
+
+    .Searchbar button {
+        padding: 8px 20px;
+        margin-top: 20px;
+        margin-left: 10px;
+        display: inline;
+    }
+
+    .Searchbar i {
+        padding: 30px 8px 30px 10px;
+    }
+}
+
+@media (min-width: 900px) {
+    .Searchbar {
+        margin-left: 300px;
+    }
+
+    .Searchbar input {
+        padding: 10px 170px;
+    }
+
+    .Searchbar button {
+        padding: 8px 20px;
+        margin-top: 20px;
+        margin-left: 10px;
+        display: inline;
+    }
+
+    .Searchbar i {
+        padding: 30px 8px 30px 10px;
+    }
+}
+

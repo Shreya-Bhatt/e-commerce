@@ -1,0 +1,53 @@
+.Sidebar {
+    width: 200px;
+    height: 90vh;
+    background-color: #dddfd4;
+    z-index: -1;
+    float: left;
+}
+
+.Sidebar a {
+    padding: 15px 30px;
+    font-weight: bold;
+    font-size: large;
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+.Sidebar a:hover,
+.Sidebar a:active,
+.Sidebar a.active {
+    background-color: #3fb0ac;
+}
+
+.SidebarItem {
+    width: 75%;
+    height: 400px;
+    margin-left: 250px;
+    /* padding: 10px 20px; */
+}
+
+.SidebarItem i {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.SidebarItem input,
+.SidebarItem textarea {
+    display: block;
+    padding: 7px 200px 7px 5px;
+    font-size: 15px;
+}
+
+.SidebarItem button {
+    padding: 5px 20px;
+    margin-top: 20px;
+}
+
+.SidebarItem a{
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+}

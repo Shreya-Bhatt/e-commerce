@@ -1,0 +1,9 @@
+.Category {
+    margin-left: 500px;
+}
+
+select {
+    padding: 5px 100px 5px 0px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
