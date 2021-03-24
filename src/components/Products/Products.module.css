@@ -30,14 +30,14 @@
     font-size: 15px;
 }
 
-.Product button {
+.Product a{
     position: absolute;
     padding: 5px 10px;
     margin-left: 80px;
     cursor: pointer;
 }
 
-.Product button:hover {
+.Product a:hover {
     background-color: midnightblue;
     color: honeydew;
 }

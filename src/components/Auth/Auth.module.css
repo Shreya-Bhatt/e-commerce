@@ -1,5 +1,9 @@
+center {
+    margin-top: 80px;
+}
+
 .Auth {
-    margin: 90px auto;
+    margin: 30px auto;
     width: 80%;
     text-align: center;
     box-shadow: 0 2px 3px #ccc;

@@ -5,8 +5,8 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = ( props ) => (
     <ul className={classes.NavigationItems}>
-        {/* <NavigationItem link="/login" exact><span className="fa fa-sign-in fa-lg">&nbsp;Shop</span></NavigationItem> */}
-        <NavigationItem link="/admin" exact><i className="fa fa-user-circle fa-lg">Admin</i></NavigationItem>
+        <NavigationItem link="/cart" exact><span className="fa fa-cart-plus fa-lg">&nbsp;Cart</span></NavigationItem>
+        <NavigationItem link="/" exact><span className="fa fa-sign-in fa-lg">&nbsp;Logout</span></NavigationItem>
     </ul>
 );
 

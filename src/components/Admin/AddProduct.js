@@ -9,12 +9,13 @@ const Dashboard = ( props ) => {
     const [productname, setProductName] = useState("");
     const [productprice, setProductPrice] = useState("");
     const [productdes, setProductDes] = useState("");
+    const [productphoto, setProductPhoto] = useState("");
 
     // const [allProducts, setAllProducts] = useState([]);
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
-        const newProduct = {productname: productname, productprice: productprice, productdes: productdes};
+        const newProduct = {productname: productname, productprice: productprice, productdes: productdes, productphoto: productphoto};
         // setAllProducts(...allProducts, newProduct);
         let result = await fetch('http://localhost:8000/api/product/create/603dd7a650dbb026bc7e8419',{
             method: 'POST',
@@ -40,6 +41,10 @@ const Dashboard = ( props ) => {
         setProductDes(event.target.value);
     };
 
+    const imageInput = (event) => {
+        setProductPhoto(event.target.value);
+    };
+
     return (
         <div>
             <Toolbar />
@@ -57,7 +62,9 @@ const Dashboard = ( props ) => {
                     <label htmlFor="productprice">Product price:&emsp;</label>
                     <input type="text" name="pprice" value={productprice} onChange={priceInput}/><br />
                     <label htmlFor="productdescription">Product description:&emsp;</label>
-                    <textarea rows="9" value={productdes} onChange={desInput}></textarea>
+                    <textarea rows="9" value={productdes} onChange={desInput}></textarea><br />
+                    <label htmlFor="productphoto">Product Image:&emsp;</label>
+                    <input type="file" name="pimage" value={productphoto} onChange={imageInput}/>
                     <button>Add</button>
                 </form>
             </div>
