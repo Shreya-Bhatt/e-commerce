@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch, connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import Aux from '../../hoc/Auxiliary';
 import Products from '../Products/Products';
@@ -23,7 +23,7 @@ const UserPage = (props) => {
 
     const dispatch = props.getProducts;
     useEffect (() => {
-        getProducts();
+        dispatch();
     },[dispatch]);
 
     console.log(props);
@@ -65,7 +65,7 @@ const UserPage = (props) => {
 };
 
 const mapStateToProps = state => ({
-    product: state.product.products,
+    product: state.products,
 });
 
 // export default UserPage;
