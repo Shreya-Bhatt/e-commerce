@@ -21,21 +21,22 @@ const UserPage = (props) => {
     //     disptach(getProducts());
     // },[dispatch]);
 
+    const dispatch = props.getProducts;
     useEffect (() => {
-        props.getProducts();
-    },[props.getProducts]);
+        getProducts();
+    },[dispatch]);
 
     console.log(props);
-    const product = (
-        props.product.map(prod => (<Products 
-            key={prod._id}
-            name={prod.name}
-            price={prod.price}
-            description={prod.description}
-            photo={prod.photo}
-            productId={prod._id}
-        />))
-    );
+    // const product = (
+    //     props.product.map(prod => (<Products 
+    //         key={prod._id}
+    //         name={prod.name}
+    //         price={prod.price}
+    //         description={prod.description}
+    //         photo={prod.photo}
+    //         productId={prod._id}
+    //     />))
+    // );
 
     return (
         <Aux>
@@ -48,13 +49,23 @@ const UserPage = (props) => {
                 </nav>
             </header>
             <Searchbar />
-            {props.loading ? ( <h2>Loading...</h2> ) : props.error ? (<h2>Error</h2>) : {product}}
+            {/* {props.loading ? ( <h2>Loading...</h2> ) : props.error ? (<h2>Error</h2>) : {product}} */}
+            {props.product ? (
+                props.product.map(prod => (<Products 
+                    key={prod._id}
+                    name={prod.name}
+                    price={prod.price}
+                    description={prod.description}
+                    photo={prod.photo}
+                    productId={prod._id}
+                />))
+            ) : (<h3>No Products Available!</h3>)}
         </Aux>
     );
 };
 
 const mapStateToProps = state => ({
-    product: state.getProducts
+    product: state.product.products,
 });
 
 // export default UserPage;
