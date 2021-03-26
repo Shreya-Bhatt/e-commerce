@@ -16,7 +16,7 @@ const products = ( photo, name, price, description, productId ) => {
                 <Link to={`/product/${productId}`}>View</Link>
             </div>
         </Aux>
-    );
+    );                                   
 };
 
 export default products;
