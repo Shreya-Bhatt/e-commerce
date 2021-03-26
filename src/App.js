@@ -11,7 +11,8 @@ import AdminPage from './components/Admin/AdminPage';
 import AddProduct from './components/Admin/AddProduct';
 import Stock from './components/Admin/Stock';
 import Orders from './components/Admin/Orders';
-// import Cart from './components/Cart/Cart';
+import Cart from './components/Cart/Cart';
+import Product from './components/Products/Product';
 
 function app() {
   let routes = (
@@ -23,7 +24,9 @@ function app() {
       <Route path="/addproduct" component={AddProduct} />
       <Route path="/stock" component={Stock} />
       <Route path="/orders" component={Orders} />
-      {/* <Route path="/cart" component={Cart} /> */}
+      <Route path="/cart" component={Cart} />
+      <Route path="/product" component={Product} />
+
       <Redirect to="/" />
     </Switch>
   );

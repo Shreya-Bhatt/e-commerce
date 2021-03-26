@@ -1,11 +1,12 @@
 import * as actionTypes from '../actions/actionTypes';
 import axios from 'axios';
 
-export const getProducts = () => async dispatch => {
+export const getProducts = (id) => async dispatch => {
     try {
-        const { data }   = await axios.get("http://localhost:8000/api/products");
-        console.log(data);
         dispatch({type: actionTypes.GET_PRODUCTS_REQUEST});
+
+        const { data } = await axios.get("http://localhost:8000/api/products");
+        console.log(data);
 
         dispatch ({
             type: actionTypes.GET_PRODUCTS_SUCCESS,
@@ -14,7 +15,7 @@ export const getProducts = () => async dispatch => {
     } catch (error) {
         dispatch ({
             type: actionTypes.GET_PRODUCTS_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+            payload: 'Something went wrong while fetching the products!'
         })
     }
 };
@@ -24,7 +25,9 @@ export const getProductsDetails = (id) => async (dispatch) => {
         dispatch({type: actionTypes.GET_PRODUCTS_DETAILS_REQUEST});
 
         const { data } = await axios.get(`http://localhost:8000/api/product/:productId/${id}`);
+        // const photo = await axios.get(`http://localhost:8000/api//product/photo/${id}`);
         console.log(data);
+
         dispatch ({
             type: actionTypes.GET_PRODUCTS_DETAILS_SUCCESS,
             payload: data
@@ -32,7 +35,7 @@ export const getProductsDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch ({
             type: actionTypes.GET_PRODUCTS_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+            payload: 'Something went wrong while fetching product details!'
         })
     }
 };

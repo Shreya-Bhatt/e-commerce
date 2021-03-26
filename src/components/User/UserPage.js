@@ -26,7 +26,6 @@ const UserPage = (props) => {
         dispatch();
     },[dispatch]);
 
-    console.log(props);
     // const product = (
     //     props.product.map(prod => (<Products 
     //         key={prod._id}
@@ -65,7 +64,7 @@ const UserPage = (props) => {
 };
 
 const mapStateToProps = state => ({
-    product: state.products,
+    product: state.product.products,
 });
 
 // export default UserPage;

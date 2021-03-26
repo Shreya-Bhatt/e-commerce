@@ -6,18 +6,19 @@ import classes from './Products.module.css';
 
 import Aux from '../../hoc/Auxiliary';
 
-const products = ( photo, name, price, description, productId ) => {
+const Products = ({name, price, description, photo, productId}) => {
     return (
         <Aux className={classes.Products}>
             <div className={classes.Product}>
                 <img src={photo} alt={name}/>
                 <b><center>{name}<br/>${price}</center></b>
-                <p>{description.substring(0,100)}...</p>
-                <Link to={`/product/${productId}`}>View</Link>
+                <p>{description}</p>
+                {/* <Link to={`http://localhost:8000/api/product/${productId}`}>View</Link> */}
+                <Link to="/product">View</Link>
             </div>
         </Aux>
     );                                   
 };
 
-export default products;
+export default Products;
 
