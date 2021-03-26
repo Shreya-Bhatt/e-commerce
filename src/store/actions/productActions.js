@@ -6,11 +6,13 @@ export const getProducts = (id) => async dispatch => {
         dispatch({type: actionTypes.GET_PRODUCTS_REQUEST});
 
         const { data } = await axios.get("http://localhost:8000/api/products");
+        // const photo = await axios.get(`http://localhost:8000/api//product/photo/${id}`);
         console.log(data);
 
         dispatch ({
             type: actionTypes.GET_PRODUCTS_SUCCESS,
             payload: data
+            // payload:[...data,photo]
         })
     } catch (error) {
         dispatch ({
