@@ -1,24 +1,81 @@
-import './Product.css';
+import "./Product.css";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import classes from '../../components/Navigation/Toolbar/Toolbar.module.css';
-import Logo from '../Logo/Logo';
-import NavigationItemsUser from '../Navigation/NavigationItems/NavigationItemsUser';
 import Aux from '../../hoc/Auxiliary';
+import { getProductDetails } from "../../store/actions/productActions";
+import { addToCart } from "../../store/actions/cartActions";
 
-const Product = () => {
+const Product = ({ match, history }) => {
+  const [qty, setQty] = useState(1);
+  const dispatch = useDispatch();
+  // const dispatch = props.getProductDetails;
+
+  const productDetails = useSelector((state) => state.productDetails.product);
+  const { loading, error, product } = productDetails;
+
+  useEffect(() => {
+    if (product && match.params.id !== product._id) {
+      dispatch(getProductDetails(match.params.id));
+    }
+  }, [dispatch, match, product]);
+
+  const addToCartHandler = () => {
+    dispatch(addToCart(product._id, qty));
+    history.push(`/cart`);
+  };
+
   return (
     <Aux>
-      <header className={classes.Toolbar}>
-          <div className={classes.Logo}>
-            <Logo />
+      <div className="productscreen">
+      {loading ? (
+        <h2>Loading...</h2>
+      ) : error ? (
+        <h2>{error}</h2>
+      ) : (product ?
+        <Aux>
+          <div className="productscreen__left">
+            <div className="left__image">
+              <img src={product.imageUrl} alt={product.name} />
+            </div>
+            <div className="left__info">
+              <p className="left__name">PlayStation 5</p>
+              <p>Price: ${product.price}</p>
+              <p>Description: {product.description}</p>
+            </div>
           </div>
-          <nav className={classes.DesktopOnly}>
-            <NavigationItemsUser />
-          </nav>
-      </header>
-      <div className="product">
-        <h2>Display the product whose view button is clicked!</h2>
-      </div>
+          <div className="productscreen__right">
+            <div className="right__info">
+              <p>
+                Price:
+                <span>${product.price}</span>
+              </p>
+              <p>
+                Status:
+                <span>
+                  {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                </span>
+              </p>
+              <p>
+                Qty
+                <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                  {[...Array(product.countInStock).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
+              </p>
+              <p>
+                <button type="button" onClick={addToCartHandler}>
+                  Add To Cart
+                </button>
+              </p>
+            </div>
+          </div>
+        </Aux>
+       : <h2>Product not available!</h2>)}
+    </div>
     </Aux>
   );
 };
