@@ -64,7 +64,7 @@ const UserPage = (props) => {
 };
 
 const mapStateToProps = state => ({
-    product: state.product.products,
+    product: state.product.products
 });
 
 // export default UserPage;

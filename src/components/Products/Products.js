@@ -7,13 +7,13 @@ import classes from './Products.module.css';
 import Aux from '../../hoc/Auxiliary';
 
 const Products = ({name, price, description, photo, productId}) => {
+    console.log(photo);
     return (
         <Aux className={classes.Products}>
             <div className={classes.Product}>
                 <img src={photo} alt={name}/>
                 <b><center>{name}<br/>${price}</center></b>
                 <p>{description}</p>
-                {/* <Link to={`http://localhost:8000/api/product/${productId}`}>View</Link> */}
                 <Link to="/product">View</Link>
             </div>
         </Aux>

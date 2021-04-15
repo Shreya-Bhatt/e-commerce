@@ -2,7 +2,9 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     products: [],
-    loading: false
+    product:{},
+    loading: false,
+    error: false
 };
 
 export const productReducer = (state = initialState, action) => {
@@ -33,7 +35,7 @@ export const productReducer = (state = initialState, action) => {
     }
 };
 
-export const productDetailsReducer = (state = {product: {}}, action) => {
+export const productDetailsReducer = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.GET_PRODUCTS_DETAILS_REQUEST:
             return {

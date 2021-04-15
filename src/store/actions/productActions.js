@@ -24,8 +24,8 @@ export const getProductDetails = (id) => async dispatch => {
     try {
         dispatch({type: actionTypes.GET_PRODUCTS_DETAILS_REQUEST});
 
-        const { data } = await axios.get(`http://localhost:8000/api/product/${id}`);
-        console.log(data);
+        const { data } = await axios.get(`http://localhost:8000/api/product/603f2b35c55644379f19ede1`);
+        // console.log(data);
 
         dispatch ({
             type: actionTypes.GET_PRODUCTS_DETAILS_SUCCESS,
@@ -33,7 +33,7 @@ export const getProductDetails = (id) => async dispatch => {
         })
     } catch (error) {
         dispatch ({
-            type: actionTypes.GET_PRODUCTS_FAIL,
+            type: actionTypes.GET_PRODUCTS_DETAILS_FAIL,
             payload: 'Something went wrong while fetching product details!'
         })
     }

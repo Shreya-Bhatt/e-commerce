@@ -1,24 +1,29 @@
 import "./Product.css";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, } from "react-redux";
 
 import Aux from '../../hoc/Auxiliary';
+import classes from '../../components/Navigation/Toolbar/Toolbar.module.css';
+import Logo from '../Logo/Logo';
+import NavigationItemsUser from '../Navigation/NavigationItems/NavigationItemsUser';
 import { getProductDetails } from "../../store/actions/productActions";
 import { addToCart } from "../../store/actions/cartActions";
 
-const Product = ({ match, history }) => {
+const Product = ({ match, history }, {name, price, description, photo, productId, stock}) => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
-  // const dispatch = props.getProductDetails;
 
-  const productDetails = useSelector((state) => state.productDetails.product);
+  const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+  // console.log(productDetails);
+  // console.log(product);
+  // console.log(loading);
 
   useEffect(() => {
-    if (product && match.params.id !== product._id) {
-      dispatch(getProductDetails(match.params.id));
+    if (product) {
+      dispatch(getProductDetails(product._id));
     }
-  }, [dispatch, match, product]);
+  }, [dispatch, match, productId, product]);
 
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, qty));
@@ -27,19 +32,27 @@ const Product = ({ match, history }) => {
 
   return (
     <Aux>
+      <header className={classes.Toolbar}>
+                <div className={classes.Logo}>
+                    <Logo />
+                </div>
+                <nav className={classes.DesktopOnly}>
+                    <NavigationItemsUser />
+                </nav>
+            </header>
       <div className="productscreen">
-      {loading ? (
-        <h2>Loading...</h2>
-      ) : error ? (
+      {/* {loading ? (
+        <h2>Loading...</h2> */}
+      {error ? (
         <h2>{error}</h2>
       ) : (product ?
         <Aux>
           <div className="productscreen__left">
             <div className="left__image">
-              <img src={product.imageUrl} alt={product.name} />
+              <img src={photo} alt={name} />
             </div>
             <div className="left__info">
-              <p className="left__name">PlayStation 5</p>
+              <p className="left__name">{product.name}</p>
               <p>Price: ${product.price}</p>
               <p>Description: {product.description}</p>
             </div>
@@ -53,13 +66,13 @@ const Product = ({ match, history }) => {
               <p>
                 Status:
                 <span>
-                  {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                  {product.stock > 0 ? "In Stock" : "Out of Stock"}
                 </span>
               </p>
               <p>
                 Qty
                 <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                  {[...Array(product.countInStock).keys()].map((x) => (
+                  {[...Array(product.stock).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
                     </option>

@@ -17,14 +17,14 @@ import Product from './components/Products/Product';
 function app() {
   let routes = (
     <Switch>
-      <Route path="/login" component={Login} />
+      <Route path="/login" exact component={Login} />
       <Route path="/" exact component={Signup} />
       <Route path="/user" exact component={UserPage} />
-      <Route path="/admin" component={AdminPage} />
-      <Route path="/addproduct" component={AddProduct} />
-      <Route path="/stock" component={Stock} />
-      <Route path="/orders" component={Orders} />
-      <Route path="/cart" component={Cart} />
+      <Route path="/admin" exact component={AdminPage} />
+      <Route path="/addproduct" exact component={AddProduct} />
+      <Route path="/stock" exact component={Stock} />
+      <Route path="/orders" exact component={Orders} />
+      <Route path="/cart" exact component={Cart} />
       <Route path="/product" component={Product} />
 
       <Redirect to="/" />
