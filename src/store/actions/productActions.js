@@ -44,3 +44,20 @@ export const removeProductsDetails = () => dispatch => {
         type: actionTypes.GET_PRODUCTS_DETAILS_RESET
     });
 };
+
+export const addProduct = (prodData) => async dispatch => {
+    try {
+        const { data } =await axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, prodData);
+
+        dispatch ({
+            type: actionTypes.ADD_PRODUCT,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch ({
+            type: actionTypes.ADD_PRODUCT_FAIL,
+            payload: 'Something went wrong while adding the product!'
+        })
+    }
+};

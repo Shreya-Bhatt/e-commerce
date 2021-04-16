@@ -4,28 +4,30 @@ import { Link } from 'react-router-dom';
 import classes from './Auth.module.css';
 import Button from '../UI/Button/Button';
 import Aux from '../../hoc/Auxiliary';
+import axios from 'axios';
 
 const Signup = (props) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    // const [allEntry, setAllEntry] = useState({});
-
     async function onSubmitHandler(event) {
         event.preventDefault();
         const newEntry = {name: name, email: email, password: password};
-        // setAllEntry(...allEntry, newEntry);
-        let result = await fetch('http://localhost:8000/api/signup',{
-            method: 'POST',
-            body: JSON.stringify(newEntry),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        });
-        result = await result.json();
-        console.log(result);
+
+        if (!name || !email || !password) {
+            alert('All fields are mandatory!');
+        } else if(typeof(name) === "number" || name.length < 3) {
+            alert('Enter a valid name!')
+        } else {
+            axios.post('http://localhost:8000/api/signup',newEntry).then(res => {
+                console.log(res)
+                props.history.push('/user');
+              }).catch(err => {
+                alert(localStorage.getItem("user-info",JSON.stringify(newEntry)))
+              })
+              console.log(newEntry)
+        }
     }
 
     const nameInputEvent = (event) => {
@@ -52,7 +54,7 @@ const Signup = (props) => {
                 <input type="name" placeholder="Name" value={name} onChange={nameInputEvent}/>
                 <input type="email" placeholder="Mail address" value={email} onChange={emailInputEvent}/>
                 <input type="password" placeholder="Password" value={password} onChange={passwordInputEvent}/>
-                <Button btnType="Success"><Link to="/user">SUBMIT</Link></Button>
+                <Button btnType="Success" onSubmit={onSubmitHandler}>SUBMIT</Button>
             </form>
             <Button btnType="Danger"><Link to="/login">SWITCH TO LOGIN</Link></Button>
         </div>

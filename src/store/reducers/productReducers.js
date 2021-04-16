@@ -66,3 +66,31 @@ export const productDetailsReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+export const adminReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case actionTypes.ADD_PRODUCT:
+            return {
+                ...state,
+                products: [action.payload, ...state.product],
+                loading: false
+            }
+
+        case actionTypes.DELETE_PRODUCT:
+            return {
+                ...state,
+                loading: false,
+                products: state.products.filter(product => product._id !== action.payload),
+            }
+
+        case actionTypes.ADD_PRODUCT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+
+        default:
+            return state;
+    }
+};

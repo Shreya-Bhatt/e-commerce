@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import classes from './Admin.module.css';
 
 import Toolbar from '../Navigation/Toolbar/Toolbar';
+import { addProduct } from '../../store/actions/productActions';
 
 const Dashboard = ( props ) => {
     const [productname, setProductName] = useState("");
@@ -11,22 +12,23 @@ const Dashboard = ( props ) => {
     const [productdes, setProductDes] = useState("");
     const [productphoto, setProductPhoto] = useState("");
 
-    // const [allProducts, setAllProducts] = useState([]);
-
     const onSubmitHandler = async (event) => {
         event.preventDefault();
         const newProduct = {productname: productname, productprice: productprice, productdes: productdes, productphoto: productphoto};
         // setAllProducts(...allProducts, newProduct);
-        let result = await fetch('http://localhost:8000/api/product/create/603dd7a650dbb026bc7e8419',{
-            method: 'POST',
-            body: JSON.stringify(newProduct),
-            headers: {
-                "Content-Type": 'application/json',
-                "Accept": 'application/json'
-            }
-        });
-        result = await result.json();
-        console.log(result);
+        // let result = await fetch('http://localhost:8000/api/product/create/60782529f12b2c3fe8036755',{
+        //     method: 'POST',
+        //     body: JSON.stringify(newProduct),
+        //     headers: {
+        //         "Content-Type": 'application/json',
+        //         "Accept": 'application/json'
+        //     }
+        // });
+        // result = await result.json();
+        // console.log(result);
+        event.target.reset();
+        addProduct(newProduct);
+        console.log(newProduct);
     };
 
     const nameInput = (event) => {
