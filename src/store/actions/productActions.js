@@ -24,7 +24,8 @@ export const getProductDetails = (id) => async dispatch => {
     try {
         dispatch({type: actionTypes.GET_PRODUCTS_DETAILS_REQUEST});
 
-        const { data } = await axios.get(`http://localhost:8000/api/product/603f2b35c55644379f19ede1`);
+        // const { data } = await axios.get(`http://localhost:8000/api/product/603f2b35c55644379f19ede1`);
+        const { data } = await axios.get(`http://localhost:8000/api/product/${id}`);
         // console.log(data);
 
         dispatch ({
@@ -34,7 +35,9 @@ export const getProductDetails = (id) => async dispatch => {
     } catch (error) {
         dispatch ({
             type: actionTypes.GET_PRODUCTS_DETAILS_FAIL,
-            payload: 'Something went wrong while fetching product details!'
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
         })
     }
 };
@@ -46,9 +49,19 @@ export const removeProductsDetails = () => dispatch => {
 };
 
 export const addProduct = (prodData) => async dispatch => {
+    console.log(prodData);
     try {
-        const { data } =await axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, prodData);
+        const token = localStorage.getItem('user-info');
+    
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        }
 
+        const { data } = await axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, prodData, config);
+        console.log(data);
         dispatch ({
             type: actionTypes.ADD_PRODUCT,
             payload: data
@@ -59,5 +72,27 @@ export const addProduct = (prodData) => async dispatch => {
             type: actionTypes.ADD_PRODUCT_FAIL,
             payload: 'Something went wrong while adding the product!'
         })
+    }
+};
+
+export const deleteProduct = (id) => async dispatch => {
+    try {
+        const token = localStorage.getItem('user-info');
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+        await axios.delete(`http://localhost:8000/api/product/${id}/60782529f12b2c3fe8036755`, config)
+    
+        dispatch({
+            type: actionTypes.DELETE_PRODUCT,
+            payload: id
+        })
+    } catch (err) {
+        dispatch({
+            type: actionTypes.DELETE_PRODUCT_FAIL,
+            payload: 'Something went wrong while deleting the product!'
+        });
     }
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./Cart.module.css";
+import "./Cart.css";
 import { Link } from "react-router-dom";
 import classes from '../../components/Navigation/Toolbar/Toolbar.module.css';
 import Logo from '../Logo/Logo';
@@ -8,7 +8,12 @@ import NavigationItemsUser from '../Navigation/NavigationItems/NavigationItemsUs
 
 import Aux from '../../hoc/Auxiliary';
 
-const Cart = ({ item, qtyChangeHandler, removeHandler }) => {
+const Cart = ({ qtyChangeHandler, removeHandler },{name, photo, price, stock, product}) => {
+  let data = localStorage.getItem('cart');
+  console.log(data);
+  let prod = JSON.parse(data);
+  console.log(prod);
+  console.log(prod[0].name);
   return (
     <Aux>
       <header className={classes.Toolbar}>
@@ -21,35 +26,31 @@ const Cart = ({ item, qtyChangeHandler, removeHandler }) => {
       </header>
       <div className="cartitem">
       <div className="cartitem__image">
-        {/* <img src={item.photo} alt={item.name} /> */}
-        Image
+        <img src={prod[0].photo} alt={name} />
+        {/* Image */}
       </div>
-      {/* <Link to={`/product/${item.product}`} className="cartItem__name"> */}
-      <Link to={`/product`} className="cartItem__name">
-        {/* <p>{item.name}</p> */}
-        Name
+      <Link to={`/product/${prod[0].product}`} className="cartItem__name">
+        <p>{prod[0].name}</p>
       </Link>
       <p className="cartitem__price">
-        {/* ${item.price} */}
-        Price
+        ${prod[0].price}
       </p>
       <select
-        // value={item.qty}
-        onChange={(e) => qtyChangeHandler(item.product, e.target.value)}
+        value={prod[0].qty}
+        onChange={(e) => qtyChangeHandler(prod[0].product, e.target.value)}
         className="cartItem__select"
       >
-        {/* {[...Array(item.countInStock).keys()].map((x) => (
+        {[...Array(prod[0].stock).keys()].map((x) => (
           <option key={x + 1} value={x + 1}>
             {x + 1}
           </option>
-        ))} */}
+        ))}
       </select>
       <button
         className="cartItem__deleteBtn"
-        // onClick={() => removeHandler(item.product)}
-        onClick={() => removeHandler()}
+        onClick={() => removeHandler(prod[0].product)}
       >
-        <i className="fas fa-trash"></i>
+        <i className="fa fa-trash"></i>
       </button>
     </div>
     </Aux>

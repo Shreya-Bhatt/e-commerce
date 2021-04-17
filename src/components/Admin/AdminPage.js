@@ -20,10 +20,11 @@ const AdminPage = (props) => {
             alert("All fields are mandatory!");
         } else {
             axios.post('http://localhost:8000/api/signin', newEntry).then(res => {
-                localStorage.setItem("user-info", JSON.stringify(newEntry));
+                console.log(res)
+                localStorage.setItem("user-info", res.data.token);
                 props.history.push('/addproduct');
             }).catch(err => {
-                alert("Enter valid username and password")
+                alert("Enter valid username and password");
             });
         }
     };

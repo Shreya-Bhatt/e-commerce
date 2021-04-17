@@ -21,12 +21,12 @@ const Product = ({ match, history }, {name, price, description, photo, productId
 
   useEffect(() => {
     if (product) {
-      dispatch(getProductDetails(product._id));
+      dispatch(getProductDetails(productId));
     }
   }, [dispatch, match, productId, product]);
 
   const addToCartHandler = () => {
-    dispatch(addToCart(product._id, qty));
+    dispatch(addToCart(productId, qty));
     history.push(`/cart`);
   };
 

@@ -14,7 +14,7 @@ const Products = ({name, price, description, photo, productId}) => {
                 <img src={photo} alt={name}/>
                 <b><center>{name}<br/>${price}</center></b>
                 <p>{description}</p>
-                <Link to="/product">View</Link>
+                <Link to={`/product/${productId}`}>View</Link>
             </div>
         </Aux>
     );                                   

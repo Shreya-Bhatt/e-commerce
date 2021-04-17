@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import classes from './Admin.module.css';
 
@@ -27,7 +28,11 @@ const Dashboard = ( props ) => {
         // result = await result.json();
         // console.log(result);
         event.target.reset();
-        addProduct(newProduct);
+        props.addProduct(newProduct);
+        setProductName("");
+        setProductPrice("");
+        setProductDes("");
+        setProductPhoto("");
         console.log(newProduct);
     };
 
@@ -74,4 +79,4 @@ const Dashboard = ( props ) => {
     );
 };
 
-export default Dashboard;
+export default connect(null, { addProduct })(Dashboard);

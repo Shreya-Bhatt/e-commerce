@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import classes from './Admin.module.css';
+import './Product.css';
 
 import Toolbar from '../Navigation/Toolbar/Toolbar';
+import { getProducts } from '../../store/actions/productActions';
+import Product from './Product';
 
-const stock = ( props ) => {
+const Stock = ( props ) => {
+    const dispatch = props.getProducts;
+    useEffect(() => {
+        dispatch();
+    },[dispatch]);
+
     return (
         <div>
             <Toolbar />
@@ -17,9 +26,24 @@ const stock = ( props ) => {
             <div className={classes.SidebarItem}>
                 <i>Stock</i>
                 <hr />
+                <div className="Main">
+                {props.product ? (
+                    props.product.map(prod => ( <Product 
+                        key={prod._id} 
+                        name={prod.name}
+                        price={prod.price}
+                        description={prod.description}
+                        photo={prod.photo}
+                        productId={prod._id}/> ))
+                    ) : (<h2> No products available!</h2>)}
+            </div>
             </div>
         </div>
     );
 };
 
-export default stock;
+const mapStateToProps = state => ({
+    product: state.product.products
+});
+
+export default connect(mapStateToProps, { getProducts })(Stock);

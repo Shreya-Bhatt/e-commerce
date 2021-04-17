@@ -1,0 +1,33 @@
+.Main{
+    padding: 0 20px 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .Item-card{
+    background-color: whitesmoke;
+} */
+
+.Item-card .Item-image {
+    height: 160px;
+    width: 90%;
+    background-size: cover;
+    position: relative;
+}
+
+.Item-card h4{
+    margin: -10px 0;
+}
+
+.Item-card button{
+    background-color:coral;
+    color: white;
+    width: 80px;
+    height: 40px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.Item-card h3{
+    margin: 5px 0;
+}

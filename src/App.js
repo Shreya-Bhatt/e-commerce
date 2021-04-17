@@ -25,7 +25,9 @@ function app() {
       <Route path="/stock" exact component={Stock} />
       <Route path="/orders" exact component={Orders} />
       <Route path="/cart" exact component={Cart} />
-      <Route path="/product" component={Product} />
+
+
+      <Route path="/product/:id" component={Product} />
 
       <Redirect to="/" />
     </Switch>

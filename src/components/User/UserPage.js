@@ -12,30 +12,10 @@ import NavigationItemsUser from '../Navigation/NavigationItems/NavigationItemsUs
 import { getProducts } from '../../store/actions/productActions';
 
 const UserPage = (props) => {
-    // const dispatch = useDispatch();
-
-    // const getProducts = useSelector(state => state.product);
-    // const { products, loading, error } = getProducts;
-
-    // useEffect (() => {
-    //     disptach(getProducts());
-    // },[dispatch]);
-
     const dispatch = props.getProducts;
     useEffect (() => {
         dispatch();
     },[dispatch]);
-
-    // const product = (
-    //     props.product.map(prod => (<Products 
-    //         key={prod._id}
-    //         name={prod.name}
-    //         price={prod.price}
-    //         description={prod.description}
-    //         photo={prod.photo}
-    //         productId={prod._id}
-    //     />))
-    // );
 
     return (
         <Aux>
