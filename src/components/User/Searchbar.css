@@ -13,20 +13,10 @@
     display: inline;
 }
 
-.Searchbar button {
-    background-color: green;
-    border-radius: 5px;
-    padding: 3px 7px;
-    font-weight: bold;
-    font-size: medium;
-    color: white;
-    margin-left: 150px;
-}
-
 @media (min-width: 700px) and (max-width: 899px) {
     .Searchbar {
         width: 700px;
-        margin-left: 100px;
+        margin-left: 150px;
     }
 
     .Searchbar input {
@@ -47,7 +37,7 @@
 
 @media (min-width: 900px) {
     .Searchbar {
-        margin-left: 300px;
+        margin-left: 350px;
     }
 
     .Searchbar input {

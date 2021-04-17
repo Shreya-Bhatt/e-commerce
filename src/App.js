@@ -11,7 +11,7 @@ import AdminPage from './components/Admin/AdminPage';
 import AddProduct from './components/Admin/AddProduct';
 import Stock from './components/Admin/Stock';
 import Orders from './components/Admin/Orders';
-import Cart from './components/Cart/Cart';
+import Cart from './components/Cart/CartScreen';
 import Product from './components/Products/Product';
 
 function app() {

@@ -24,9 +24,12 @@ export const getProductDetails = (id) => async dispatch => {
     try {
         dispatch({type: actionTypes.GET_PRODUCTS_DETAILS_REQUEST});
 
-        // const { data } = await axios.get(`http://localhost:8000/api/product/603f2b35c55644379f19ede1`);
-        const { data } = await axios.get(`http://localhost:8000/api/product/${id}`);
+        const { data } = await axios.get(`http://localhost:8000/api/product/603f2b35c55644379f19ede1`);
+        // const { data } = await axios.get(`http://localhost:8000/api/product/${id}`);
+        // const photo = await axios.get(`http://localhost:8000/api/product/photo/603f2b35c55644379f19ede1`);
         // console.log(data);
+        // const prodData = { photo, data }
+        // console.log(prodData);
 
         dispatch ({
             type: actionTypes.GET_PRODUCTS_DETAILS_SUCCESS,
@@ -37,7 +40,7 @@ export const getProductDetails = (id) => async dispatch => {
             type: actionTypes.GET_PRODUCTS_DETAILS_FAIL,
             payload: error.response && error.response.data.message
                 ? error.response.data.message
-                : error.message,
+                : error.message
         })
     }
 };

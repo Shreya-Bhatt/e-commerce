@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import CartItem from "../Cart/Cart";
 
-import { addToCart, removeFromCart } from "../redux/actions/cartActions";
+import { addToCart, removeFromCart } from "../../store/actions/cartActions";
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -32,6 +32,10 @@ const CartScreen = () => {
     return cartItems
       .reduce((price, item) => price + item.price * item.qty, 0)
       .toFixed(2);
+  };
+
+  const checkoutHandler = () => {
+    alert('Your order is successfully placed!');
   };
 
   return (
@@ -62,7 +66,7 @@ const CartScreen = () => {
             <p>${getCartSubTotal()}</p>
           </div>
           <div>
-            <button>Proceed To Checkout</button>
+            <button onClick={checkoutHandler}>Proceed To Checkout</button>
           </div>
         </div>
       </div>
