@@ -1,13 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
 import './Product.css';
 import { connect } from 'react-redux';
 import { deleteProduct } from '../../store/actions/productActions';
 import photo from '../../assets/Images/product.jpg';
 
 const Product = ({productId, name, description, price}, props) => {
-    const btnHandler = (event) => {
-        event.preventDefault();
-        props.deleteProduct(productId)
+    const dispatch = useDispatch();
+
+    const btnHandler = () => {
+        dispatch(deleteProduct(productId));
+        window.location.reload();
     };
 
     return (

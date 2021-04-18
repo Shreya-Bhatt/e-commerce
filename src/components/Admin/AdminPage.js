@@ -22,6 +22,7 @@ const AdminPage = (props) => {
             axios.post('http://localhost:8000/api/signin', newEntry).then(res => {
                 console.log(res)
                 localStorage.setItem("user-info", res.data.token);
+                localStorage.setItem("user-id", res.data.userId);
                 props.history.push('/addproduct');
             }).catch(err => {
                 alert("Enter valid username and password");

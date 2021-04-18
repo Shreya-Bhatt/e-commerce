@@ -6,6 +6,7 @@ import classes from './Admin.module.css';
 
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import { addProduct } from '../../store/actions/productActions';
+import axios from 'axios';
 
 const Dashboard = ( props ) => {
     const [productname, setProductName] = useState("");
@@ -27,7 +28,15 @@ const Dashboard = ( props ) => {
         // });
         // result = await result.json();
         // console.log(result);
-        event.target.reset();
+
+        if(!productname || !productprice || !productdes || productphoto) {
+            alert('All fields are mandatory!');
+        } else {
+            axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, newProduct)
+                .then(res => {
+                    
+                })
+        }
         props.addProduct(newProduct);
         setProductName("");
         setProductPrice("");

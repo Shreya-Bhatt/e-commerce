@@ -1,6 +1,6 @@
 import "./Product.css";
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch, } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Aux from '../../hoc/Auxiliary';
 import classes from '../../components/Navigation/Toolbar/Toolbar.module.css';
@@ -21,12 +21,12 @@ const Product = ({ match, history }, {name, price, description, photo, productId
 
   useEffect(() => {
     if (product) {
-      dispatch(getProductDetails(productId));
+      dispatch(getProductDetails(match.params.id));
     }
-  }, [dispatch, match, productId, product]);
+  }, []);
 
   const addToCartHandler = () => {
-    dispatch(addToCart(productId, qty));
+    dispatch(addToCart(match.params.id , qty));
     history.push(`/cart`);
   };
 
@@ -49,7 +49,8 @@ const Product = ({ match, history }, {name, price, description, photo, productId
         <Aux>
           <div className="productscreen__left">
             <div className="left__image">
-              <img src={photo} alt={name} />
+              {/* <img src={photo} alt={name} /> */}
+          
             </div>
             <div className="left__info">
               <p className="left__name">{product.name}</p>
