@@ -48,17 +48,11 @@ export const getProductDetails = (id) => async dispatch => {
     }
 };
 
-// export const removeProductsDetails = () => dispatch => {
-//     dispatch({
-//         type: actionTypes.GET_PRODUCTS_DETAILS_RESET
-//     });
-// };
-
 export const addProduct = (prodData) => async dispatch => {
     console.log(prodData);
     try {
         const token = localStorage.getItem('user-info');
-
+        const uid = localStorage.getItem('user-id')
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -66,13 +60,12 @@ export const addProduct = (prodData) => async dispatch => {
             }
         }
 
-        const { data } = await axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, prodData, config);
+        const { data } = await axios.post(`http://localhost:8000/api/product/create/${uid}`, prodData, config);
         console.log(data);
         dispatch ({
             type: actionTypes.ADD_PRODUCT,
             payload: data
         })
-        console.log('sh');
 
     } catch (error) {
         dispatch ({

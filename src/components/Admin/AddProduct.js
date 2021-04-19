@@ -6,7 +6,7 @@ import classes from './Admin.module.css';
 
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import { addProduct } from '../../store/actions/productActions';
-import axios from 'axios';
+// import axios from 'axios';
 
 const Dashboard = ( props ) => {
     const [productname, setProductName] = useState("");
@@ -17,27 +17,23 @@ const Dashboard = ( props ) => {
     const onSubmitHandler = async (event) => {
         event.preventDefault();
         const newProduct = {productname: productname, productprice: productprice, productdes: productdes, productphoto: productphoto};
-        // setAllProducts(...allProducts, newProduct);
-        // let result = await fetch('http://localhost:8000/api/product/create/60782529f12b2c3fe8036755',{
-        //     method: 'POST',
-        //     body: JSON.stringify(newProduct),
-        //     headers: {
-        //         "Content-Type": 'application/json',
-        //         "Accept": 'application/json'
-        //     }
-        // });
-        // result = await result.json();
-        // console.log(result);
-
-        // if(!productname || !productprice || !productdes || productphoto) {
-        //     alert('All fields are mandatory!');
+    
+        // const uid = localStorage.getItem('user-id')
+        if(!productname || !productprice || !productdes || !productphoto) {
+            alert('All fields are mandatory!');
+        } else {
+            props.addProduct(newProduct);
+        }
         // } else {
-        //     axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, newProduct)
-        //         .then(res => {
-                    
+        //     axios.post(`http://localhost:8000/api/product/create/${uid}`, newProduct,{
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             Authorization: 'Bearer ' + localStorage.getItem('user-info'),
+        //           }
+        //     }).then(res => {
+        //             alert('Product successfully added!');
         //         })
         // }
-        props.addProduct(newProduct);
         setProductName("");
         setProductPrice("");
         setProductDes("");
