@@ -29,14 +29,14 @@ const Dashboard = ( props ) => {
         // result = await result.json();
         // console.log(result);
 
-        if(!productname || !productprice || !productdes || productphoto) {
-            alert('All fields are mandatory!');
-        } else {
-            axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, newProduct)
-                .then(res => {
+        // if(!productname || !productprice || !productdes || productphoto) {
+        //     alert('All fields are mandatory!');
+        // } else {
+        //     axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, newProduct)
+        //         .then(res => {
                     
-                })
-        }
+        //         })
+        // }
         props.addProduct(newProduct);
         setProductName("");
         setProductPrice("");
@@ -67,7 +67,6 @@ const Dashboard = ( props ) => {
             <span className={classes.Sidebar}>
                 <Link to="/admin" className={classes.active}>Add Product</Link>
                 <Link to="/stock">Stock</Link>
-                <Link to="/orders">Orders</Link>
             </span>
             <div className={classes.SidebarItem}>
                 <i>Add a new product</i>

@@ -24,13 +24,11 @@ export const getProductDetails = (id) => async dispatch => {
     try {
         dispatch({type: actionTypes.GET_PRODUCTS_DETAILS_REQUEST});
 
-        // const { data } = await axios.get(`http://localhost:8000/api/product/603f2b35c55644379f19ede1`);
         const { data } = await axios.get(`http://localhost:8000/api/product/${id}`);
+        // const photo = await axios.get(`http://localhost:8000/api/product/photo/603f2b88c55644379f19ede2`);
         const photo = await axios.get(`http://localhost:8000/api/product/photo/${id}`);
-        // console.log(data);
-        // const prodData = { photo, data }
-        // console.log(prodData);
-    const photoData = photo.data
+        console.log(photo);
+        const photoData = photo.data
         const newData = {
             ...data,
             photoData,
@@ -50,22 +48,22 @@ export const getProductDetails = (id) => async dispatch => {
     }
 };
 
-export const removeProductsDetails = () => dispatch => {
-    dispatch({
-        type: actionTypes.GET_PRODUCTS_DETAILS_RESET
-    });
-};
+// export const removeProductsDetails = () => dispatch => {
+//     dispatch({
+//         type: actionTypes.GET_PRODUCTS_DETAILS_RESET
+//     });
+// };
 
 export const addProduct = (prodData) => async dispatch => {
     console.log(prodData);
     try {
         const token = localStorage.getItem('user-info');
-        console.log(localStorage.getItem('user-id'));
+
         const config = {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
-            },
+            }
         }
 
         const { data } = await axios.post(`http://localhost:8000/api/product/create/60782529f12b2c3fe8036755`, prodData, config);
@@ -74,6 +72,7 @@ export const addProduct = (prodData) => async dispatch => {
             type: actionTypes.ADD_PRODUCT,
             payload: data
         })
+        console.log('sh');
 
     } catch (error) {
         dispatch ({

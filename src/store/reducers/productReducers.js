@@ -72,8 +72,8 @@ export const adminReducer = (state = initialState, action) => {
         case actionTypes.ADD_PRODUCT:
             return {
                 ...state,
-                // products: [action.payload, ...state.product],
-                products: state.products.concat(action.payload),
+                products: [action.payload, ...state.product],
+                // products: state.products.concat(action.payload),
                 loading: false
             }
 

@@ -10,7 +10,6 @@ import Signup from './components/Auth/Signup';
 import AdminPage from './components/Admin/AdminPage';
 import AddProduct from './components/Admin/AddProduct';
 import Stock from './components/Admin/Stock';
-import Orders from './components/Admin/Orders';
 import Cart from './components/Cart/CartScreen';
 import Product from './components/Products/Product';
 
@@ -23,7 +22,6 @@ function app() {
       <Route path="/admin" exact component={AdminPage} />
       <Route path="/addproduct" exact component={AddProduct} />
       <Route path="/stock" exact component={Stock} />
-      <Route path="/orders" exact component={Orders} />
       <Route path="/cart" exact component={Cart} />
 
 

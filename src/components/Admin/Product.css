@@ -4,10 +4,6 @@
     justify-content: space-between;
 }
 
-/* .Item-card{
-    background-color: whitesmoke;
-} */
-
 .Item-card .Item-image {
     height: 160px;
     width: 90%;
@@ -20,7 +16,7 @@
 }
 
 .Item-card button{
-    background-color:coral;
+    background-color: crimson;
     color: white;
     width: 80px;
     height: 40px;

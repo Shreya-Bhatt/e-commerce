@@ -3,6 +3,11 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import classes from '../../components/Navigation/Toolbar/Toolbar.module.css';
+import Logo from '../Logo/Logo';
+import Aux from '../../hoc/Auxiliary';
+import NavigationItemsUser from '../Navigation/NavigationItems/NavigationItemsUser';
+
 import CartItem from "../Cart/Cart";
 
 import { addToCart, removeFromCart } from "../../store/actions/cartActions";
@@ -39,7 +44,15 @@ const CartScreen = () => {
   };
 
   return (
-    <>
+    <Aux>
+      <header className={classes.Toolbar}>
+        <div className={classes.Logo}>
+          <Logo />
+        </div>
+        <nav className={classes.DesktopOnly}>
+          <NavigationItemsUser />
+        </nav>
+      </header>
       <div className="cartscreen">
         <div className="cartscreen__left">
           <h2>Shopping Cart</h2>
@@ -70,7 +83,7 @@ const CartScreen = () => {
           </div>
         </div>
       </div>
-    </>
+    </Aux>
   );
 };
 

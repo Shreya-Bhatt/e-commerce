@@ -5,11 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import Aux from '../../hoc/Auxiliary';
 import classes from '../../components/Navigation/Toolbar/Toolbar.module.css';
 import Logo from '../Logo/Logo';
+import photo from '../../assets/Images/product.jpg';
 import NavigationItemsUser from '../Navigation/NavigationItems/NavigationItemsUser';
 import { getProductDetails } from "../../store/actions/productActions";
 import { addToCart } from "../../store/actions/cartActions";
 
-const Product = ({ match, history }, {name, price, description, photo, productId, stock}) => {
+const Product = ({ match, history }) => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 
@@ -33,13 +34,13 @@ const Product = ({ match, history }, {name, price, description, photo, productId
   return (
     <Aux>
       <header className={classes.Toolbar}>
-                <div className={classes.Logo}>
-                    <Logo />
-                </div>
-                <nav className={classes.DesktopOnly}>
-                    <NavigationItemsUser />
-                </nav>
-            </header>
+        <div className={classes.Logo}>
+          <Logo />
+        </div>
+        <nav className={classes.DesktopOnly}>
+          <NavigationItemsUser />
+        </nav>
+      </header>
       <div className="productscreen">
       {/* {loading ? (
         <h2>Loading...</h2> */}
@@ -49,8 +50,8 @@ const Product = ({ match, history }, {name, price, description, photo, productId
         <Aux>
           <div className="productscreen__left">
             <div className="left__image">
-              {/* <img src={photo} alt={name} /> */}
-          
+              {/* <img src={product.photo} alt={product.name} /> */}
+              <img src={photo} alt={product.name} />
             </div>
             <div className="left__info">
               <p className="left__name">{product.name}</p>

@@ -21,7 +21,6 @@ const Stock = ( props ) => {
             <span className={classes.Sidebar}>
                 <Link to="/admin">Add Product</Link>
                 <Link to="/stock" className={classes.active}>Stock</Link>
-                <Link to="/orders">Orders</Link>
             </span>
             <div className={classes.SidebarItem}>
                 <i>Stock</i>
@@ -34,7 +33,8 @@ const Stock = ( props ) => {
                         price={prod.price}
                         description={prod.description}
                         photo={prod.photo}
-                        productId={prod._id}/> ))
+                        productId={prod._id}
+                        stock={prod.stock}/> ))
                     ) : (<h2> No products available!</h2>)}
             </div>
             </div>
