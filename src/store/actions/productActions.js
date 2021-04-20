@@ -25,8 +25,8 @@ export const getProductDetails = (id) => async dispatch => {
         dispatch({type: actionTypes.GET_PRODUCTS_DETAILS_REQUEST});
 
         const { data } = await axios.get(`http://localhost:8000/api/product/${id}`);
-        // const photo = await axios.get(`http://localhost:8000/api/product/photo/603f2b88c55644379f19ede2`);
-        const photo = await axios.get(`http://localhost:8000/api/product/photo/${id}`);
+        const photo = await axios.get(`http://localhost:8000/api/product/photo/603f2b88c55644379f19ede2`);
+        // const photo = await axios.get(`http://localhost:8000/api/product/photo/${id}`);
         console.log(photo);
         const photoData = photo.data
         const newData = {

@@ -22,7 +22,10 @@ const Cart = ({ qtyChangeHandler, removeHandler, item }) => {
       </header>
       <div className="cartitem">
       <div className="cartitem__image">
-        <img src={item.photo} alt={item.name} />
+        {/* <img src={item.photo} alt={item.name} /> */}
+        <img src="http://localhost:8000/api/product/photo/603f2b88c55644379f19ede2" 
+          alt={item.name} 
+          style={{width: "200px", height: "150px"}}/>
       </div>
       <Link to={`/product/${item.product}`} className="cartItem__name">
         <p>{item.name}</p>

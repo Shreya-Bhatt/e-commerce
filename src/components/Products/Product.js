@@ -50,8 +50,10 @@ const Product = ({ match, history }) => {
         <Aux>
           <div className="productscreen__left">
             <div className="left__image">
-              {/* <img src={product.photo} alt={product.name} /> */}
-              <img src={photo} alt={product.name} />
+              <img src="http://localhost:8000/api/product/photo/603f2b88c55644379f19ede2" 
+                alt={product.name} 
+                style={{width: "600px", height: "400px"}}/>
+              {/* <img src={photo} alt={product.name} /> */}
             </div>
             <div className="left__info">
               <p className="left__name">{product.name}</p>
