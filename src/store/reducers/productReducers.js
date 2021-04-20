@@ -57,11 +57,6 @@ export const productDetailsReducer = (state = initialState, action) => {
                 error: action.payload
             }
 
-        case actionTypes.GET_PRODUCTS_DETAILS_RESET:
-            return {
-                ...state,
-                product: {}
-            }
         default:
             return state;
     }

@@ -22,8 +22,8 @@ const Dashboard = ( props ) => {
         const data = new FormData();
         data.append("name", productname);
         data.append("description", productdes);
-        data.append("price",productprice);
-        data.append("stock", "55");
+        data.append("price", productprice);
+        data.append("stock", productstock);
         if(!productname || !productprice || !productdes || !productstock) {
             alert('All fields are mandatory!');
         } else {
