@@ -8,12 +8,6 @@ import Toolbar from '../Navigation/Toolbar/Toolbar';
 import { addProduct } from '../../store/actions/productActions';
 import axios from 'axios';
 
-const newProduct1 = {
-    name: "Learn code onlineee",
-    description: "A Tshirt for Codersss",
-    price: 25,
-    stock: 55
-}
 
 const Dashboard = ( props ) => {
     const [productname, setProductName] = useState("");
